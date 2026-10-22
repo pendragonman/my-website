@@ -1,12 +1,12 @@
 :root {
-  --text: #4b4b57;
-  --text-h: #08060d;
+  --text: #445155;
+  --text-h: #061014;
   --bg: #ffffff;
-  --bg-soft: #f7f7fa;
-  --border: #e5e4e7;
-  --accent: #7c3aed;
-  --accent-bg: rgba(124, 58, 237, 0.08);
-  --accent-border: rgba(124, 58, 237, 0.35);
+  --bg-soft: #f3f9fa;
+  --border: #e2eaec;
+  --accent: #0f766e;
+  --accent-bg: rgba(15, 118, 110, 0.08);
+  --accent-border: rgba(15, 118, 110, 0.35);
   --on-accent: #ffffff;
   --shadow:
     rgba(0, 0, 0, 0.08) 0 10px 15px -3px, rgba(0, 0, 0, 0.04) 0 4px 6px -2px;
@@ -27,18 +27,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #b3b3bd;
-    --text-h: #f3f4f6;
-    --bg: #121218;
-    --bg-soft: #191921;
-    --border: #2e303a;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.12);
-    --accent-border: rgba(192, 132, 252, 0.4);
-    --on-accent: #180d24;
+    --text: #adbcc0;
+    --text-h: #eef5f7;
+    --bg: #0e1416;
+    --bg-soft: #141d20;
+    --border: #293739;
+    --accent: #2dd4bf;
+    --accent-bg: rgba(45, 212, 191, 0.12);
+    --accent-border: rgba(45, 212, 191, 0.4);
+    --on-accent: #04211d;
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-    --nav-bg: rgba(18, 18, 24, 0.55);
+    --nav-bg: rgba(14, 20, 22, 0.55);
   }
 }
 
