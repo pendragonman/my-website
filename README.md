@@ -33,7 +33,9 @@ the social share image is `public/og.jpg`.
 
 ## Deploying
 
-From the project root:
+Pushes to `main` auto-deploy through Vercel's Git integration (this repo is
+connected to the Vercel project). To deploy manually instead, from the project
+root:
 
 ```sh
 npx vercel --prod
