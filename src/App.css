@@ -208,15 +208,20 @@
     overflow: hidden;
     max-height: 0;
     opacity: 0;
+    /* visibility keeps closed links out of the tab order */
+    visibility: hidden;
     transform: translateY(-8px);
     transition: max-height 0.35s ease, opacity 0.25s ease,
-      transform 0.25s ease;
+      transform 0.25s ease, visibility 0s 0.35s;
   }
 
   .nav-dropdown.nav-dropdown-open {
     max-height: 320px;
     opacity: 1;
+    visibility: visible;
     transform: translateY(0);
+    transition: max-height 0.35s ease, opacity 0.25s ease,
+      transform 0.25s ease, visibility 0s 0s;
   }
 
   .nav-dropdown a {
@@ -238,7 +243,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nav-dropdown,
-  .nav-toggle span {
+  .nav-toggle span,
+  .skip-link {
     transition: none;
   }
 }
@@ -419,6 +425,37 @@
   border: 0;
 }
 
+/* Skip link — hidden until focused via keyboard */
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-250%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Visible focus indicator for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link:focus-visible {
+  outline-color: var(--text-h);
+}
+
 .hero-summary {
   max-width: 640px;
   color: var(--text);
@@ -469,7 +506,7 @@
 
 .btn-primary {
   background: var(--accent);
-  color: white;
+  color: var(--on-accent);
 }
 
 .btn-primary:hover {
@@ -897,7 +934,7 @@
 
 .contact-icon:hover {
   background: var(--accent);
-  color: white;
+  color: var(--on-accent);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px -6px var(--accent);
 }

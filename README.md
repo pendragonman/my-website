@@ -1,16 +1,42 @@
-# React + Vite
+# Abdul-Samad Owoseni — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio site: a single-page site for a data analyst & data engineering
+enthusiast, with a typewriter hero, scroll-reveal sections (experience, projects,
+skills, certifications), and a downloadable CV.
 
-Currently, two official plugins are available:
+**Live:** https://abdul-samad-portfolio-lilac.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- [React 19](https://react.dev) + [Vite 8](https://vitejs.dev), plain JavaScript
+- No backend and no runtime dependencies beyond React
+- Deployed on [Vercel](https://vercel.com) (project `abdul-samad-portfolio`)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Development
 
-## Expanding the Oxlint configuration
+```sh
+npm install
+npm run dev      # start dev server with HMR
+npm run lint     # oxlint
+npm run build    # production build to dist/
+npm run preview  # serve the production build locally
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Editing content
+
+All site content lives in [`src/data.js`](src/data.js) — profile, highlights,
+stats, experience, projects, skills and certifications. To update the CV,
+replace `public/Abdul-Samad_Owoseni_CV.pdf` (keep the filename).
+
+Social/SEO metadata (Open Graph, Twitter card, JSON-LD) is in `index.html`;
+the social share image is `public/og.jpg`.
+
+## Deploying
+
+From the project root:
+
+```sh
+npx vercel --prod
+```
+
+The directory is linked to the Vercel project via `.vercel/project.json`.

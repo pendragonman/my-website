@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   profile,
   highlights,
@@ -80,6 +80,15 @@ function Nav() {
   const [open, setOpen] = useState(false);
   const links = ["About", "Experience", "Projects", "Skills", "Contact"];
 
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   return (
     <header className="nav">
       <a className="nav-brand" href="#top">
@@ -87,7 +96,7 @@ function Nav() {
         A. Owoseni
       </a>
 
-      <nav className="nav-links-desktop">
+      <nav className="nav-links-desktop" aria-label="Main">
         {links.map((l) => (
           <a key={l} href={`#${l.toLowerCase()}`}>
             {l}
@@ -100,13 +109,18 @@ function Nav() {
         onClick={() => setOpen((o) => !o)}
         aria-label="Toggle menu"
         aria-expanded={open}
+        aria-controls="mobile-menu"
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <nav className={`nav-dropdown ${open ? "nav-dropdown-open" : ""}`}>
+      <nav
+        id="mobile-menu"
+        aria-label="Main"
+        className={`nav-dropdown ${open ? "nav-dropdown-open" : ""}`}
+      >
         {links.map((l) => (
           <a
             key={l}
@@ -141,7 +155,7 @@ function Hero() {
           {typedRole}
           <span className="typewriter-cursor"></span>
         </h2>
-        <span className="sr-only">{profile.title}</span>
+        <h2 className="sr-only">{profile.title}</h2>
         <p className="hero-summary">{profile.summary}</p>
         <div className="hero-keywords">
           {profile.keywords.map((k) => (
@@ -168,7 +182,7 @@ function Hero() {
       </div>
       <div className="hero-photo">
         <div className="hero-photo-blob" aria-hidden="true"></div>
-        <img src={portrait} alt={profile.name} />
+        <img src={portrait} alt={`Portrait of ${profile.name}`} />
         <span className="hero-badge">Open to internships</span>
       </div>
     </section>
@@ -178,6 +192,7 @@ function Hero() {
 function Highlights() {
   return (
     <section className="section highlights-section">
+      <h2 className="sr-only">Highlights</h2>
       <div className="highlights-grid">
         {highlights.map((h, i) => (
           <Reveal
@@ -199,6 +214,7 @@ function Highlights() {
 function Stats() {
   return (
     <section className="section stats-section">
+      <h2 className="sr-only">At a glance</h2>
       <div className="stats-grid">
         {stats.map((s, i) => (
           <Reveal
@@ -411,7 +427,7 @@ function Contact() {
             target="_blank"
             rel="noreferrer"
             className="contact-icon"
-            aria-label="LinkedIn"
+            aria-label="LinkedIn (opens in new tab)"
             title="LinkedIn"
           >
             <IconLinkedin />
@@ -435,8 +451,11 @@ function Footer() {
 function App() {
   return (
     <div className="page">
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <Nav />
-      <main>
+      <main id="main">
         <Hero />
         <Highlights />
         <About />
